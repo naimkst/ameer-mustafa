@@ -1,113 +1,170 @@
+"use client";
 import Image from "next/image";
+import "@public/css/bootstrap.css";
+import "@public/css/fontawesome-all.css";
+import "@public/css/swiper.css";
+import "@public/css/magnific-popup.css";
+import "@public/css/styles.css";
+
+import { useEffect, useState } from "react";
+import { Marketing } from "./components/marketing";
+import { Description } from "./components/description";
+import { Customer } from "./components/customer";
+import { Header } from "./components/header";
+import { Details } from "./components/details";
+import { Video } from "./components/video";
+import { Pricing } from "./components/pricing";
+import { Testimonial } from "./components/testimonial";
+import { Newsletter } from "./components/newsletter";
+import { Footer } from "./components/footer";
 
 export default function Home() {
+  const [scroll, setScroll] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      // Access scroll data
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      if (scrollTop > 100) {
+        setScroll(true);
+      } else {
+        setScroll(false);
+      }
+    };
+
+    // Attach scroll event listener to window
+    window.addEventListener("scroll", handleScroll);
+
+    // Cleanup: remove event listener on component unmount
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <>
+      {/* <div className="spinner-wrapper">
+        <div className="spinner">
+          <div className="bounce1"></div>
+          <div className="bounce2"></div>
+          <div className="bounce3"></div>
         </div>
-      </div>
+      </div> */}
+      <nav
+        className={`${
+          scroll
+            ? "navbar navbar-expand-lg navbar-dark navbar-custom fixed-top top-nav-collapse"
+            : "navbar navbar-expand-lg navbar-dark navbar-custom fixed-top"
+        }`}
+      >
+        <div className="container">
+          {/* <a className="navbar-brand logo-text page-scroll" href="/">
+            Tivo
+          </a> */}
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+          <a className="navbar-brand logo-image" href="/">
+            <img src="images/logo.svg" alt="alternative" />
+          </a>
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-toggle=""
+            data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-awesome fas fa-bars"></span>
+            <span className="navbar-toggler-awesome fas fa-times"></span>
+          </button>
+
+          <div className=" navbar-collapse" id="navbarsExampleDefault">
+            <ul className="navbar-nav ml-auto">
+              <li className="nav-item">
+                <a className="nav-link page-scroll" href="#header">
+                  HOME <span className="sr-only">(current)</span>
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link page-scroll" href="#features">
+                  FEATURES
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link page-scroll" href="#details">
+                  DETAILS
+                </a>
+              </li>
+
+              <li className="nav-item">
+                <a
+                  className="nav-link  page-scroll"
+                  href="#video"
+                  id="navbarDropdown"
+                  role="button"
+                  // aria-haspopup="true"
+                  // aria-expanded="false"
+                >
+                  VIDEO
+                </a>
+                {/* <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a className="dropdown-item" href="article-details.html">
+                    <span className="item-text">ARTICLE DETAILS</span>
+                  </a>
+                  <div className="dropdown-items-divide-hr"></div>
+                  <a className="dropdown-item" href="terms-conditions.html">
+                    <span className="item-text">TERMS CONDITIONS</span>
+                  </a>
+                  <div className="dropdown-items-divide-hr"></div>
+                  <a className="dropdown-item" href="privacy-policy.html">
+                    <span className="item-text">PRIVACY POLICY</span>
+                  </a>
+                </div> */}
+              </li>
+
+              <li className="nav-item">
+                <a className="nav-link page-scroll" href="#pricing">
+                  PRICING
+                </a>
+              </li>
+            </ul>
+            <span className="nav-item">
+              <a className="btn-outline-sm" href="log-in.html">
+                LOG IN
+              </a>
             </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+          </div>
+        </div>
+      </nav>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+      {/* Header */}
+      <Header />
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
+      {/* Customer */}
+      <Customer />
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50 text-balance`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+      {/* Description */}
+      <Description />
+
+      {/* Features  */}
+      <Marketing />
+
+      {/* Details */}
+      <Details />
+
+      {/* Videos */}
+      <Video />
+
+      {/* Pricing */}
+      <Pricing />
+
+      {/* Testimonail */}
+      <Testimonial />
+
+      {/* Newslatter */}
+      <Newsletter />
+
+      {/* Footer */}
+      <Footer />
+    </>
   );
 }
