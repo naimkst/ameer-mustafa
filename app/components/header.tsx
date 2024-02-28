@@ -1,6 +1,7 @@
+import { showImage } from "app/utils/helper";
 import React from "react";
 
-export const Header = () => {
+export const Header = ({ data }: any) => {
   return (
     <>
       <header id="header" className="header">
@@ -9,13 +10,13 @@ export const Header = () => {
             <div className="row">
               <div className="col-lg-6 col-xl-5">
                 <div className="text-container">
-                  <h1>SaaS App HTML Landing Page</h1>
-                  <p className="p-large">
-                    Use Tivo to automate your marketing actions in order to
-                    reach a much larger audience
-                  </p>
-                  <a className="btn-solid-lg page-scroll" href="sign-up.html">
-                    SIGN UP
+                  <h1>{data?.Title}</h1>
+                  <p className="p-large">{data?.Description}</p>
+                  <a
+                    className="btn-solid-lg page-scroll"
+                    href={data?.ButtonLink}
+                  >
+                    {data?.ButtonText}
                   </a>
                 </div>
               </div>
@@ -24,7 +25,7 @@ export const Header = () => {
                   <div className="img-wrapper">
                     <img
                       className="img-fluid"
-                      src="images/header-software-app.png"
+                      src={showImage(data?.HeroImage)}
                       alt="alternative"
                     />
                   </div>

@@ -17,9 +17,20 @@ import { Pricing } from "./components/pricing";
 import { Testimonial } from "./components/testimonial";
 import { Newsletter } from "./components/newsletter";
 import { Footer } from "./components/footer";
+import useFetch from "./hooks/useFetch";
 
 export default function Home() {
   const [scroll, setScroll] = useState(false);
+
+  const {
+    loading,
+    error,
+    data: getData,
+  }: any = useFetch(`${process.env.NEXT_PUBLIC_API_URL}/home?populate=deep`);
+
+  const homeData = getData?.data?.attributes;
+  console.log(homeData, "=========");
+
   useEffect(() => {
     const handleScroll = () => {
       // Access scroll data
@@ -137,13 +148,19 @@ export default function Home() {
       </nav>
 
       {/* Header */}
-      <Header />
+      {homeData?.HeroSection?.isActive == true && (
+        <Header data={homeData?.HeroSection} />
+      )}
 
       {/* Customer */}
-      <Customer />
+      {homeData?.BrandImage?.isActive == true && (
+        <Customer data={homeData?.BrandImage} />
+      )}
 
       {/* Description */}
-      <Description />
+      {homeData?.SectionInfo?.isActive == true && (
+        <Description data={homeData?.SectionInfo} />
+      )}
 
       {/* Features  */}
       <Marketing />

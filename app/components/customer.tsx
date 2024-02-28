@@ -2,8 +2,10 @@ import React from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import { showImage } from "app/utils/helper";
 
-export const Customer = () => {
+export const Customer = ({ data }: any) => {
+  console.log(data, "@@@@@@");
   const settings = {
     dots: false,
     infinite: true,
@@ -30,48 +32,15 @@ export const Customer = () => {
               <div className="swiper-container">
                 <div className="">
                   <Slider {...settings}>
-                    <div className="swiper-slide">
-                      <img
-                        className="img-fluid"
-                        src="images/customer-logo-1.png"
-                        alt="alternative"
-                      />
-                    </div>
-                    <div className="swiper-slide">
-                      <img
-                        className="img-fluid"
-                        src="images/customer-logo-2.png"
-                        alt="alternative"
-                      />
-                    </div>
-                    <div className="swiper-slide">
-                      <img
-                        className="img-fluid"
-                        src="images/customer-logo-3.png"
-                        alt="alternative"
-                      />
-                    </div>
-                    <div className="swiper-slide">
-                      <img
-                        className="img-fluid"
-                        src="images/customer-logo-4.png"
-                        alt="alternative"
-                      />
-                    </div>
-                    <div className="swiper-slide">
-                      <img
-                        className="img-fluid"
-                        src="images/customer-logo-5.png"
-                        alt="alternative"
-                      />
-                    </div>
-                    <div className="swiper-slide">
-                      <img
-                        className="img-fluid"
-                        src="images/customer-logo-6.png"
-                        alt="alternative"
-                      />
-                    </div>
+                    {data?.SliderImages?.data.map((item: any, index: any) => (
+                      <div key={`item-${index}`} className="swiper-slide">
+                        <img
+                          className="img-fluid"
+                          src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${item?.attributes?.url}`}
+                          alt="alternative"
+                        />
+                      </div>
+                    ))}
                   </Slider>
                 </div>
               </div>
