@@ -163,13 +163,19 @@ export default function Home() {
       )}
 
       {/* Features  */}
-      <Marketing />
+      {homeData?.TabSection?.isActive == true && (
+        <Marketing data={homeData?.TabSection} tabs={homeData?.TabGrid} />
+      )}
 
       {/* Details */}
-      <Details />
+      {homeData?.UpgradeSection?.isActive == true && (
+        <Details data={homeData?.UpgradeSection} />
+      )}
 
       {/* Videos */}
-      <Video />
+      {homeData?.VideoSection?.isActive == true && (
+        <Video data={homeData?.VideoSection} />
+      )}
 
       {/* Pricing */}
       <Pricing />

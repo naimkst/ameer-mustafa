@@ -1,6 +1,7 @@
+import { showImage } from "app/utils/helper";
 import React from "react";
 
-export const Video = () => {
+export const Video = ({ data }: any) => {
   return (
     <div id="video" className="basic-2">
       <div className="container">
@@ -10,12 +11,12 @@ export const Video = () => {
               <div className="video-wrapper">
                 <a
                   className="popup-youtube"
-                  href="https://www.youtube.com/watch?v=fLCjQJCekTs"
+                  href={data?.VideoLink}
                   data-effect="fadeIn"
                 >
                   <img
                     className="img-fluid"
-                    src="images/video-image.png"
+                    src={showImage(data?.Thumbnail)}
                     alt="alternative"
                   />
                   <span className="video-play-button">
@@ -25,11 +26,7 @@ export const Video = () => {
               </div>
             </div>
 
-            <div className="p-heading">
-              What better way to show off Tivo marketing automation saas app
-              than presenting you some great situations of each module and tool
-              available to users in a video
-            </div>
+            <div className="p-heading">{data?.VideoDescription}</div>
           </div>
         </div>
       </div>

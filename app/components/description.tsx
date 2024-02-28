@@ -13,7 +13,7 @@ export const Description = ({ data }: any) => {
         </div>
         <div className="row">
           <div className="col-lg-12">
-            {data?.AboutSection.map((item: any, index: any) => (
+            {data?.AboutSection?.map((item: any, index: any) => (
               <div className="card">
                 <div className="card-image">
                   <img

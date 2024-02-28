@@ -1,34 +1,21 @@
+import { showImage } from "app/utils/helper";
 import React from "react";
+import ReactMarkdown from "react-markdown";
 
-export const Details = () => {
+export const Details = ({ data }: any) => {
   return (
     <div id="details" className="basic-1">
       <div className="container">
         <div className="row">
           <div className="col-lg-6">
             <div className="text-container">
-              <h2>Now Is The Time To Upgrade Your Marketing Solution</h2>
-              <p>
-                Target the right customers for your business with the help of
-                Tivo's patented segmentation technology and deploy efficient
-                marketing campaigns. Keep your customers happy and loyal.
-              </p>
-              <ul className="list-unstyled li-space-lg">
-                <li className="media">
-                  <i className="fas fa-square"></i>
-                  <div className="media-body">
-                    Understand customers and meet their requirements
-                  </div>
-                </li>
-                <li className="media">
-                  <i className="fas fa-square"></i>
-                  <div className="media-body">
-                    Targeted client base with Tivo's efficient technology
-                  </div>
-                </li>
-              </ul>
-              <a className="btn-solid-reg page-scroll" href="sign-up.html">
-                SIGN UP
+              <h2>{data?.Title}</h2>
+              <ReactMarkdown className="listStyle">
+                {data?.Description}
+              </ReactMarkdown>
+
+              <a className="btn-solid-reg page-scroll" href={data?.ButtonLink}>
+                {data?.ButtonText}
               </a>
             </div>
           </div>
@@ -36,7 +23,7 @@ export const Details = () => {
             <div className="image-container">
               <img
                 className="img-fluid"
-                src="images/details.png"
+                src={showImage(data?.UpgradeImage)}
                 alt="alternative"
               />
             </div>

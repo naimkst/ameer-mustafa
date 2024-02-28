@@ -2141,3 +2141,13 @@ a:hover.back-to-top {
   box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px,
     rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
 }
+.listStyle ul {
+  padding-left: 20px;
+}
+.listStyle ul li {
+  list-style: square;
+}
+.listStyle ul li::marker {
+  color: #5f4dee;
+  font-size: 25px;
+}
