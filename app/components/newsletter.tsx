@@ -1,16 +1,15 @@
 import React from "react";
+import ReactMarkdown from "react-markdown";
 
-export const Newsletter = () => {
+export const Newsletter = ({ data }: any) => {
   return (
     <div className="form">
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
             <div className="text-container">
-              <div className="above-heading">NEWSLETTER</div>
-              <h2>
-                Stay Updated With The Latest News To Get More Qualified Leads
-              </h2>
+              <div className="above-heading">{data?.Slug}</div>
+              <h2>{data?.Title}</h2>
 
               <form
                 id="newsletterForm"
@@ -25,7 +24,7 @@ export const Newsletter = () => {
                     required
                   />
                   <label className="label-control" htmlFor="nemail">
-                    Email
+                    {data?.InputName}
                   </label>
                   <div className="help-block with-errors"></div>
                 </div>
@@ -36,14 +35,14 @@ export const Newsletter = () => {
                     value="Agreed-to-Terms"
                     required
                   />
-                  I've read and agree to Tivo's written{" "}
-                  <a href="privacy-policy.html">Privacy Policy</a> and{" "}
-                  <a href="terms-conditions.html">Terms Conditions</a>
+                  <ReactMarkdown className="">
+                    {data?.PrivacryText}
+                  </ReactMarkdown>
                   <div className="help-block with-errors"></div>
                 </div>
                 <div className="form-group">
                   <button type="submit" className="form-control-submit-button">
-                    SUBSCRIBE
+                    {data?.SubscriptionButton}
                   </button>
                 </div>
                 <div className="form-message">

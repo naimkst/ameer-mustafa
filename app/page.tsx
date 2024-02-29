@@ -178,13 +178,17 @@ export default function Home() {
       )}
 
       {/* Pricing */}
-      <Pricing />
-
+      {homeData?.PriceSection?.isActive == true && (
+        <Pricing data={homeData?.PriceSection} item={homeData?.PriceItem} />
+      )}
       {/* Testimonail */}
-      <Testimonial />
-
+      {/* {homeData?.TestimonialSection?.isActive == true && ( */}
+      <Testimonial data={homeData?.TestimonialSection} />
+      {/* )} */}
       {/* Newslatter */}
-      <Newsletter />
+      {homeData?.NewslatterSection?.isActive == true && (
+        <Newsletter data={homeData?.NewslatterSection} />
+      )}
 
       {/* Footer */}
       <Footer />
